@@ -7,6 +7,9 @@ export const PatientModel = {
       prisma.patient.findMany({
         skip,
         take: limit,
+        orderBy: {
+          createdAt: 'desc'
+        },
         include: { membership: true },
       }),
       prisma.patient.count(),

@@ -1,41 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Afiliado</title>
-</head>
-<body>
-    <h1>Editar Afiliado</h1>
-    <a href="/">← Volver a la lista</a>
-    
-    <form action="/afiliado/<%= patient.id %>/editar" method="POST" style="margin-top: 20px;">
-        <div>
-            <label>Nombre:</label>
-            <input type="text" name="firstName" value="<%= patient.firstName %>" required>
-        </div>
-        <br>
-        <div>
-            <label>Apellido:</label>
-            <input type="text" name="lastName" value="<%= patient.lastName %>" required>
-        </div>
-        <br>
-        <div>
-            <label>Email:</label>
-            <input type="email" name="email" value="<%= patient.email %>" required>
-        </div>
-        <br>
-        <div>
-            <label>Membresía:</label>
-            <select name="membershipId" required>
-                <% memberships.forEach(m => { %>
-                    <option value="<%= m.id %>" <%= patient.membershipId === m.id ? 'selected' : '' %>>
-                        <%= m.name %> - <%= m.discountPercentage %>%
-                    </option>
-                <% }) %>
-            </select>
-        </div>
-        <br>
-        <button type="submit">Actualizar Afiliado</button>
-    </form>
-</body>
-</html>
+<%- include('../partials/header', { title: 'Editar afiliado' }) %>
+
+<h1>Editar Afiliado</h1>
+<a href="/afiliado/<%= patient.id %>">← Volver a la ficha</a>
+
+<form action="/afiliado/<%= patient.id %>/editar" method="POST" style="margin-top: 20px;">
+    <div>
+        <label>Nombre:</label>
+        <input type="text" name="firstName" value="<%= patient.firstName %>" required>
+    </div>
+    <br>
+    <div>
+        <label>Apellido:</label>
+        <input type="text" name="lastName" value="<%= patient.lastName %>" required>
+    </div>
+    <br>
+    <div>
+        <label>Email:</label>
+        <input type="email" name="email" value="<%= patient.email %>" required>
+    </div>
+    <br>
+    <div>
+        <label>Membresía:</label>
+        <select name="membershipId" required>
+            <% memberships.forEach(m => { %>
+                <option value="<%= m.id %>" <%= patient.membershipId === m.id ? 'selected' : '' %>>
+                    <%= m.name %> - <%= m.discountPercentage %>%
+                </option>
+            <% }) %>
+        </select>
+    </div>
+    <br>
+    <button type="submit">Actualizar Afiliado</button>
+</form>
+<%- include('../partials/footer') %>

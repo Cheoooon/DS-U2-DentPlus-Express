@@ -38,8 +38,8 @@ export const PatientController = {
   createPatient: async (req: Request, res: Response) => {
     try {
       const { firstName, lastName, email, membershipId } = req.body;
-      await PatientModel.create({ firstName, lastName, email, membershipId });
-      res.redirect('/');
+      const newPatient = await PatientModel.create({ firstName, lastName, email, membershipId });
+      res.redirect(`/afiliado/${newPatient.id}`);
     } 
     catch (error) {
       console.error(error);

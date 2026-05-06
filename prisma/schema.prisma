@@ -19,6 +19,9 @@ model Patient {
   firstName    String
   lastName     String
   email        String     @unique
+
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
   
   // Relación con Membership
   membershipId String
