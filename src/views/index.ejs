@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Pacientes</title>
+</head>
+<body>
+    <h1>Afiliados a DentPlus</h1>
+    <a href="/afiliado/nuevo"><button>+ Agregar Nuevo Afiliado</button></a>
+    
+    <table border="1" cellpadding="10" style="margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Membresía</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% patients.forEach(patient => { %>
+                <tr>
+                    <td><%= patient.firstName %></td>
+                    <td><%= patient.lastName %></td>
+                    <td><%= patient.email %></td>
+                    <td><%= patient.membership.name %> (<%= patient.membership.discountPercentage %>%)</td>
+                    <td>
+                        <a href="/afiliado/<%= patient.id %>">Ver Ficha</a> |
+                        <a href="/afiliado/<%= patient.id %>/editar">Editar</a> |
+                        <a href="/afiliado/<%= patient.id %>/eliminar">Eliminar</a>
+                    </td>
+                </tr>
+            <% }) %>
+            <% if(patients.length === 0) { %>
+                <tr><td colspan="5">No hay pacientes registrados.</td></tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <% if (page > 1) { %>
+            <a href="/?page=<%= page - 1 %>">Anterior</a>
+        <% } %>
+        
+        <span> Página <%= page %> de <%= totalPages || 1 %> </span>
+        
+        <% if (page < totalPages) { %>
+            <a href="/?page=<%= page + 1 %>">Siguiente</a>
+        <% } %>
+    </div>
+</body>
+</html>

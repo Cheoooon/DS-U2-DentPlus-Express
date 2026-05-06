@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Afiliado</title>
+</head>
+<body>
+    <h1>Registrar Nuevo Afiliado</h1>
+    <a href="/">← Volver a la lista</a>
+    
+    <form action="/afiliado/nuevo" method="POST" style="margin-top: 20px;">
+        <div>
+            <label>Nombre:</label>
+            <input type="text" name="firstName" required>
+        </div>
+        <br>
+        <div>
+            <label>Apellido:</label>
+            <input type="text" name="lastName" required>
+        </div>
+        <br>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+        </div>
+        <br>
+        <div>
+            <label>Membresía:</label>
+            <select name="membershipId" required>
+                <option value="">Selecciona una opción...</option>
+                <% memberships.forEach(m => { %>
+                    <option value="<%= m.id %>"><%= m.name %> - <%= m.discountPercentage %>%</option>
+                <% }) %>
+            </select>
+        </div>
+        <br>
+        <button type="submit">Guardar Afiliado</button>
+    </form>
+</body>
+</html>

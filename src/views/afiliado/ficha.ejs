@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha del Afiliado</title>
+</head>
+<body>
+    <h1>Ficha de <%= patient.firstName %> <%= patient.lastName %></h1>
+    <a href="/">← Volver a la lista</a>
+    
+    <div style="margin-top: 20px; border: 1px solid #ccc; padding: 20px; border-radius: 5px; max-width: 400px;">
+        <h3>Datos Personales</h3>
+        <ul>
+            <li><strong>Email:</strong> <%= patient.email %></li>
+            <li><strong>Membresía:</strong> <%= patient.membership.name %></li>
+            <li><strong>Descuento Base:</strong> <%= patient.membership.discountPercentage %>%</li>
+        </ul>
+
+        <hr style="margin: 20px 0;">
+
+        <h3>Calcular Presupuesto</h3>
+        <form action="/afiliado/<%= patient.id %>/calcular" method="POST">
+            <div>
+                <label>Monto del tratamiento ($):</label><br>
+                <input type="number" name="amount" min="1" required style="margin-top: 5px;">
+            </div>
+            <button type="submit" style="margin-top: 10px;">Calcular Descuento</button>
+        </form>
+    </div>
+</body>
+</html>

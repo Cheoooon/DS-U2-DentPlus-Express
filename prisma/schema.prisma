@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+
+model Membership {
+  id                 String     @id @default(uuid())
+  name               String
+  discountPercentage Int
+  patients           Patient[]
+}
+
+model Patient {
+  id           String     @id @default(uuid())
+  firstName    String
+  lastName     String
+  email        String     @unique
+  
+  // Relación con Membership
+  membershipId String
+  membership   Membership @relation(fields: [membershipId], references: [id])
+}
