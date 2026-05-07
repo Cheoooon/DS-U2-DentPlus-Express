@@ -2,7 +2,7 @@
 set -e
 
 echo "📦 Instalando dependencias (incluyendo dev) para compilación..."
-npm install --include=dev
+npm ci --include=dev
 
 echo "--- Entorno: ${NODE_ENV:-development} ---"
 
