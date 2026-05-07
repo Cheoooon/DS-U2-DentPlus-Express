@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    container_name: node_prisma_app
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /app
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    env_file: ".env"
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+    volumes:
+      - ./:/app:rw
+    entrypoint: [ "/bin/sh", "./docker-entrypoint.sh" ]
