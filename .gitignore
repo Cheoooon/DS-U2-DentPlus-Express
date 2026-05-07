@@ -4,3 +4,6 @@
 dist
 node_modules/
 prisma/data/
+
+## Others
+.idea
