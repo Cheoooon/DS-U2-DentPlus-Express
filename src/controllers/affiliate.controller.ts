@@ -17,36 +17,41 @@ export const AffiliateController = {
 
       res.render('affiliates/index', { 
         affiliates,
-        currentPage: page,
-        totalPages,
-        hasPreviousPage: page > 1,
-        hasNextPage: page < totalPages,
-        previousPage: page - 1,
-        nextPage: page + 1
+        pagination: {
+          currentPage: page,
+          totalPages,
+          hasPrevious: page > 1,
+          hasNext: page < totalPages,
+          previousPage: page - 1,
+          nextPage: page + 1,
+          totalRecords: total,
+          startRecord: (page - 1) * limit + 1,
+          endRecord: Math.min(page * limit, total)
+        }
       });
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error en getAll affiliates:', error);
       res.status(500).render('home', { error: 'Error al cargar el listado de afiliados.' });
     }
   },
 
-  // GET /afiliado/nuevo
+  // GET /affiliate/create
   getCreateForm: async (req: Request, res: Response) => {
     try {
-      // Consumimos el modelo de membresías en lugar de Prisma directo
       const memberships = await MembershipModel.getAll();
       res.render('affiliates/create', { memberships });
     }
-    catch (error) {
+    catch {
       res.redirect('/affiliates');
     }
   },
 
-  // POST /afiliado/nuevo
+  // POST /affiliate/create
   create: async (req: Request, res: Response) => {
     try {
       const userId = req.session.userId!;
-      const validatedData = AffiliateSchema.parse(req.body);
+      const validatedData = await AffiliateSchema(userId).parseAsync(req.body);
 
       await AffiliateModel.create({
         ...validatedData,
@@ -83,7 +88,7 @@ export const AffiliateController = {
 
       res.render('affiliates/show', { affiliate });
     }
-    catch (error) {
+    catch {
       res.redirect('/affiliates');
     }
   },
@@ -106,7 +111,7 @@ export const AffiliateController = {
 
       res.render('affiliates/edit', { affiliate, memberships });
     }
-    catch (error) {
+    catch {
       res.redirect('/affiliates');
     }
   },
@@ -116,7 +121,7 @@ export const AffiliateController = {
     const id = req.params.id as string;
     const userId = req.session.userId!;
     try {
-      const validatedData = AffiliateSchema.parse(req.body);
+      const validatedData = await AffiliateSchema(userId).parseAsync(req.body);
       
       await AffiliateModel.update(id, userId, validatedData);
 
@@ -147,7 +152,7 @@ export const AffiliateController = {
 
       res.render('affiliates/delete', { affiliate });
     }
-    catch (err) {
+    catch {
       res.redirect('/affiliates');
     }
   },
@@ -162,7 +167,7 @@ export const AffiliateController = {
 
       res.redirect('/affiliates');
     }
-     catch (error) {
+    catch {
       res.status(500).redirect('/affiliates');
     }
   }

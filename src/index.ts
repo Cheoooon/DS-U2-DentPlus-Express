@@ -16,10 +16,10 @@ app.engine('hbs', engine({
   layoutsDir: path.join(process.cwd(), 'views/layouts'),
   helpers: {
     // Aquí registras tu helper para mantener el selector
-    eq: function (a: any, b: any) {
+    eq: function (a: unknown, b: unknown) {
       return a === b;
     },
-    'or': function (a: any, b: any) {
+    'or': function (a: unknown, b: unknown) {
       return a || b;
     }
   }

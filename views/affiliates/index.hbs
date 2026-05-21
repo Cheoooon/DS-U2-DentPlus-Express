@@ -1,5 +1,4 @@
 <div class="space-y-6">
-  <!-- Encabezado del Panel -->
   <div class="sm:flex sm:items-center sm:justify-between border-b border-gray-200 pb-5">
     <div>
       <h1 class="text-2xl font-bold leading-6 text-gray-900 sm:text-3xl tracking-tight">Mis Afiliados</h1>
@@ -12,7 +11,6 @@
     </div>
   </div>
 
-  <!-- Tabla de Datos -->
   {{#if affiliates}}
     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white">
       <table class="min-w-full divide-y divide-gray-300">
@@ -44,17 +42,78 @@
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 font-mono">
                 {{this.membership.discountPercentage}}%
               </td>
-              <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-3">
-                <a href="/affiliates/{{this.id}}" class="text-indigo-600 hover:text-indigo-900">Calcular</a>
-                <a href="/affiliates/{{this.id}}/edit" class="text-gray-600 hover:text-gray-900">Editar</a>
+              
+              <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <div class="inline-flex rounded-md shadow-sm space-x-2">
+                  <a href="/affiliates/{{this.id}}" class="inline-flex items-center rounded bg-white px-2 py-1 text-xs font-semibold text-indigo-600 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-indigo-50 transition-colors">
+                    Ver ficha
+                  </a>
+                  <a href="/affiliates/{{this.id}}/edit" class="inline-flex items-center rounded bg-white px-2 py-1 text-xs font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition-colors">
+                    Editar
+                  </a>
+                  <a href="/affiliates/{{this.id}}/delete" class="inline-flex items-center rounded bg-red-50 px-2 py-1 text-xs font-semibold text-red-700 shadow-sm ring-1 ring-inset ring-red-200 hover:bg-red-100 transition-colors">
+                    Eliminar
+                  </a>
+                </div>
               </td>
             </tr>
           {{/each}}
         </tbody>
       </table>
+
+      <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+        <div class="flex flex-1 justify-between sm:hidden">
+          {{#if pagination.hasPrevious}}
+            <a href="/affiliates?page={{pagination.previousPage}}" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">&larr; Anterior</a>
+          {{else}}
+            <span class="relative inline-flex items-center rounded-md border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed">&larr; Anterior</span>
+          {{/if}}
+          
+          {{#if pagination.hasNext}}
+            <a href="/affiliates?page={{pagination.nextPage}}" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Siguiente &rarr;</a>
+          {{else}}
+            <span class="relative ml-3 inline-flex items-center rounded-md border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed">Siguiente &rarr;</span>
+          {{/if}}
+        </div>
+
+        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+          <div>
+            <p class="text-sm text-gray-700">
+              Mostrando <span class="font-medium">{{pagination.startRecord}}</span> a <span class="font-medium">{{pagination.endRecord}}</span> de <span class="font-medium">{{pagination.totalRecords}}</span> afiliados
+            </p>
+          </div>
+          <div>
+            <nav class="isolate inline-flex items-center space-x-2" aria-label="Pagination">
+              {{#if pagination.hasPrevious}}
+                <a href="/affiliates?page={{pagination.previousPage}}" class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                  <span class="text-gray-700 font-bold mr-1">&larr;</span> Anterior
+                </a>
+              {{else}}
+                <span class="relative inline-flex items-center rounded-md bg-gray-50 px-3 py-2 text-sm font-semibold text-gray-400 ring-1 ring-inset ring-gray-200 cursor-not-allowed">
+                  <span class="text-gray-300 font-bold mr-1">&larr;</span> Anterior
+                </span>
+              {{/if}}
+
+              <span class="relative inline-flex items-center rounded-md bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
+                Página {{pagination.currentPage}} de {{pagination.totalPages}}
+              </span>
+
+              {{#if pagination.hasNext}}
+                <a href="/affiliates?page={{pagination.nextPage}}" class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                  Siguiente <span class="text-gray-700 font-bold ml-1">&rarr;</span>
+                </a>
+              {{else}}
+                <span class="relative inline-flex items-center rounded-md bg-gray-50 px-3 py-2 text-sm font-semibold text-gray-400 ring-1 ring-inset ring-gray-200 cursor-not-allowed">
+                  Siguiente <span class="text-gray-300 font-bold ml-1">&rarr;</span>
+                </span>
+              {{/if}}
+            </nav>
+          </div>
+        </div>
+      </div>
+
     </div>
   {{else}}
-    <!-- Estado Vacío (No hay datos registrados aún) -->
     <div class="text-center bg-white border border-dashed border-gray-300 rounded-lg p-12 shadow-sm">
       <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />

@@ -38,8 +38,11 @@
         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">Nivel de Membresía</dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800">
-              {{affiliate.membership.name}}
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+                {{affiliate.membership.name}} 
+            </span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
+                {{affiliate.membership.discountPercentage}}% desc.
             </span>
           </dd>
         </div>

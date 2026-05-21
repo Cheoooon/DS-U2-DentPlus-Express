@@ -34,6 +34,17 @@ export const AffiliateModel = {
     });
   },
 
+  // Obtener un solo afiliado por email verificando que pertenezca al usuario
+  getByEmail: async (email: string, userId: number) => {
+    return await prisma.affiliate.findFirst({
+      where: { 
+        email,
+        userId 
+      },
+      include: { membership: true },
+    });
+  },
+
   // Crear un afiliado enlazado explícitamente a su creador
   create: async (data: { 
     firstName: string; 
