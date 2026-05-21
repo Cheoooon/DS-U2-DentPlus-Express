@@ -53,7 +53,7 @@ export const AuthController = {
         return res.render('auth/register', { error: 'El correo ya está registrado', name, email });
       }
 
-      const passwordHash = await bcrypt.hash(password, 10);
+      const passwordHash = await bcrypt.hash(password, process.env.BCRYPT_SALT_ROUNDS ?? 10);
       await UserModel.create({ name, email, passwordHash });
 
       res.redirect('/login');

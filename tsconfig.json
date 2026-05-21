@@ -1,14 +1,25 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "target": "ES2023",
-    "strict": true,
+    /* Opciones de Lenguaje y Entorno */
+    "target": "ESNext", 
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+
+    /* Directorios */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Interoperabilidad */
     "esModuleInterop": true,
-    "ignoreDeprecations": "6.0"
+    "forceConsistentCasingInFileNames": true,
+
+    /* Comprobación de Tipos (Type Checking) */
+    "strict": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*", "prisma"],
+  "include": ["src/**/*"],
   "exclude": [
+    "node_modules",
     "dist"
   ]
 }

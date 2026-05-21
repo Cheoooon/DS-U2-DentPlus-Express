@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model Affiliate
@@ -259,19 +259,19 @@ export type AffiliateOrderByWithRelationInput = {
 
 export type AffiliateWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  email?: string
   AND?: Prisma.AffiliateWhereInput | Prisma.AffiliateWhereInput[]
   OR?: Prisma.AffiliateWhereInput[]
   NOT?: Prisma.AffiliateWhereInput | Prisma.AffiliateWhereInput[]
   firstName?: Prisma.StringFilter<"Affiliate"> | string
   lastName?: Prisma.StringFilter<"Affiliate"> | string
+  email?: Prisma.StringFilter<"Affiliate"> | string
   createdAt?: Prisma.DateTimeFilter<"Affiliate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Affiliate"> | Date | string
   membershipId?: Prisma.StringFilter<"Affiliate"> | string
   userId?: Prisma.IntFilter<"Affiliate"> | number
   membership?: Prisma.XOR<Prisma.MembershipScalarRelationFilter, Prisma.MembershipWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id" | "email">
+}, "id">
 
 export type AffiliateOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

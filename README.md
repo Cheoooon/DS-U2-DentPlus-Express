@@ -1,6 +1,6 @@
 # DentPlus Express - Sistema de Membresías
 
-Este proyecto es una aplicación Express con TypeScript, Prisma y EJS, diseñada para ejecutarse de forma sencilla y automatizada utilizando Docker.
+Este proyecto es una aplicación Express con TypeScript, Prisma y HBS, diseñada para ejecutarse de forma sencilla y automatizada utilizando Docker.
 
 ## 🚀 Inicio Rápido con Docker
 
@@ -21,44 +21,20 @@ La aplicación estará disponible en `http://localhost:3000` (o el puerto que de
 
 ---
 
-## 🌍 Entornos (NODE_ENV)
+## Desarrollo local (solo levantar postgresql)
+Solo levantar postgress y desarrollo local:
 
-Puedes cambiar el comportamiento de la aplicación modificando la variable `NODE_ENV` en tu archivo `.env`:
-
-### 🛠 Modo Desarrollo (`NODE_ENV=development`)
-*   **Auto-recarga**: Utiliza `tsx --watch` para que cualquier cambio que hagas en el código se refleje instantáneamente sin reiniciar el contenedor.
-*   **Base de Datos**: Sincroniza el esquema automáticamente con `prisma db push`.
-*   **Seeds**: Ejecuta el seed para poblar datos iniciales.
-
-### 📦 Modo Producción (`NODE_ENV=production`)
-*   **Compilación**: El contenedor compila el código TypeScript a JavaScript (`npm run build`) al iniciar.
-*   **Rendimiento**: Ejecuta la versión optimizada desde la carpeta `dist`.
-*   **Base de Datos**: Aplica migraciones de forma segura con `prisma migrate deploy`.
-
----
-
-## 📂 Estructura de Volúmenes y Persistencia
-
-El proyecto está configurado para que puedas editar el código desde tu máquina local y los cambios se sincronicen con el contenedor.
-
-*   **Código Fuente**: Sincronizado mediante un bind-mount (`./:/app`).
-*   **Base de Datos**: Los datos persisten en `prisma/data/dev.db`.
-*   **Dependencias**: Se instalan automáticamente dentro del contenedor al arrancar para asegurar compatibilidad.
-
----
-
-## 🛠 Comandos de Prisma (Manual)
-
-Si necesitas ejecutar comandos de Prisma manualmente dentro del contenedor:
-
-```bash
-# Entrar al contenedor
-docker exec -it node_prisma_app sh
-
-# Ejecutar comandos
-npx prisma studio
-npx prisma migrate dev --name descripcion
+Es necesario indicar el puerto en docker-compose.yml para exponer localmente postgresql:
 ```
+    ports:
+      - "5432:5432"
+```
+
+Levantar postgresql:
+> docker compose up postgres-db (con -d para que se ejecute en segundo plano)
+
+Iniciar proyecto
+> pnpm run dev
 
 ---
 

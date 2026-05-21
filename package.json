@@ -24,13 +24,14 @@
   },
   "homepage": "https://github.com/Cheoooon/DS-U2-DentPlus-Express#readme",
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^7.8.0",
+    "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-handlebars": "^9.0.1",
     "express-session": "^1.19.0",
+    "pg": "^8.21.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.19.0",
     "@types/node": "^25.6.0",
+    "@types/pg": "^8.20.0",
     "eslint": "^10.3.0",
     "prisma": "^7.8.0",
     "tsx": "^4.21.0",

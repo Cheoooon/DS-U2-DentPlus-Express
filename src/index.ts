@@ -1,9 +1,9 @@
 import express from 'express';
+import session from 'express-session';
 import { engine } from 'express-handlebars'
 import path from 'path';
 import authRoutes, { authGuard } from './routes/auth.routes.js';
 import affiliateRoutes from './routes/affiliate.routes.js';
-import session from 'express-session';
 
 
 const app = express();
@@ -37,7 +37,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'clave_secreta_desarrollo',
   resave: false,
   saveUninitialized: false,
-  cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
+  cookie: { httpOnly: true }
 }));
 
 app.use((req, res, next) => {
