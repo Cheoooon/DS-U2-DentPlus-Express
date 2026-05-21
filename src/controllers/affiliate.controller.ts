@@ -121,7 +121,7 @@ export const AffiliateController = {
     const id = req.params.id as string;
     const userId = req.session.userId!;
     try {
-      const validatedData = await AffiliateSchema(userId).parseAsync(req.body);
+      const validatedData = await AffiliateSchema(userId, id).parseAsync(req.body);
       
       await AffiliateModel.update(id, userId, validatedData);
 

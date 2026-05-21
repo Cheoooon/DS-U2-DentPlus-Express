@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full"> <head>
+<html lang="es" class="h-full select-none">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DentPlus - Gestión de Afiliados</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background-color: #94a3b8; }
+  </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-900 flex flex-col min-h-screen w-full overflow-x-hidden">
+<body class="bg-gray-50 font-sans text-gray-900 flex flex-col h-screen w-full overflow-hidden">
 
-  <nav class="bg-white border-b border-gray-200 shadow-sm w-full shrink-0">
+  <nav class="bg-white border-b border-gray-200 shadow-sm w-full shrink-0 z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
@@ -43,11 +51,13 @@
     </div>
   </nav>
 
-  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-x-auto min-w-0">
-    {{{body}}}
+  <main class="flex-grow w-full bg-gray-50 overflow-auto scrollbar-gutter-stable">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {{{body}}}
+    </div>
   </main>
 
-  <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500 w-full shrink-0">
+  <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500 w-full shrink-0 z-10">
     &copy; 2026 DentPlus. Todos los derechos reservados.
   </footer>
 
