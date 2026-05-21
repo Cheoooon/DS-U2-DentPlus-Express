@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -7,23 +8,35 @@ datasource db {
 }
 
 
-model Membership {
-  id                 String     @id @default(uuid())
-  name               String
-  discountPercentage Int
-  patients           Patient[]
+model User {
+  id        Int         @id @default(autoincrement())
+  email     String      @unique
+  password  String      // Secure Salted Bcrypt Hash String
+  name      String
+  createdAt DateTime    @default(now())
+  
+  affiliates Affiliate[]
 }
 
-model Patient {
+model Membership {
+  id                 String      @id @default(uuid())
+  name               String      @unique
+  discountPercentage Int
+  
+  affiliates         Affiliate[]
+}
+
+model Affiliate {
   id           String     @id @default(uuid())
   firstName    String
   lastName     String
   email        String     @unique
-
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
-  
-  // Relación con Membership
+
   membershipId String
   membership   Membership @relation(fields: [membershipId], references: [id])
+
+  userId       Int
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

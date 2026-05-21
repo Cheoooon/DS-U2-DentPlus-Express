@@ -1,33 +1,34 @@
 import { Request, Response } from 'express';
-import { PatientModel } from '../models/patientModel.js';
+import { AffiliateModel } from '../models/affiliate.model.js';
 
 export const MembershipController = {
   
   calculateDiscount: async (req: Request, res: Response) => {
     try {
       const id = req.params.id as string;
-      const { amount } = req.body; // El número que ingresó el usuario en el input
-
-      // 1. Buscamos al paciente para saber qué membresía tiene
-      const patient = await PatientModel.getById(id);
+      const { amount } = req.body;
+      const userId = req.session.userId!;
       
-      if (!patient) {
+      const affiliate = await AffiliateModel.getById(id, userId);
+      
+      if (!affiliate) {
         return res.status(404).send('Afiliado no encontrado');
       }
 
-      // 2. Hacemos los cálculos matemáticos
       const originalAmount = parseFloat(amount);
-      const discountPercentage = patient.membership.discountPercentage;
+      const discountPercentage = affiliate.membership.discountPercentage;
       
       const discountValue = originalAmount * (discountPercentage / 100);
       const finalPrice = originalAmount - discountValue;
 
-      res.render('afiliado/calcular', {
-        patient,
-        originalAmount,
-        discountPercentage,
-        discountValue,
-        finalPrice
+      res.render('affiliates/compute', {
+        affiliate,
+        calculation: {
+          originalAmount,
+          discountPercentage,
+          discountValue,
+          finalPrice
+        }
       });
 
     } 

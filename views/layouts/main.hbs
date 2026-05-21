@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DentPlus - Gestión de Afiliados</title>
+  <!-- Tailwind CSS CDN para desarrollo rápido -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 flex flex-col min-h-screen">
+
+  <!-- Navbar Global -->
+  <nav class="bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <!-- Logo principal redirige a la Home -->
+          <a href="/" class="flex-shrink-0 flex items-center gap-2">
+            <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              DentPlus
+            </span>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          {{#if isAuthenticated}}
+            <!-- Enlaces para usuarios autenticados -->
+            <a href="/affiliates" class="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+              Mis Afiliados
+            </a>
+            <span class="text-sm text-gray-400">|</span>
+            <span class="text-sm font-semibold text-gray-800">
+              Hola, {{currentUser}}
+            </span>
+            <a href="/logout" class="ml-2 inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors">
+              Cerrar Sesión
+            </a>
+          {{else}}
+            <!-- Enlaces para visitantes -->
+            <a href="/login" class="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+              Iniciar Sesión
+            </a>
+            <a href="/register" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm">
+              Registrarse
+            </a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenedor de Vistas Dinámicas -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    {{{body}}}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500">
+    &copy; 2026 DentPlus. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

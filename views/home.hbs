@@ -1,0 +1,19 @@
+<div class="min-h-[60vh] flex flex-col items-center justify-center">
+  <div class="text-center space-y-4">
+    <!-- Logotipo en formato gigante con gradiente -->
+    <h1 class="text-6xl sm:text-8xl font-black tracking-tighter bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm select-none">
+      DentPlus
+    </h1>
+    <p class="text-gray-500 text-lg sm:text-xl font-medium tracking-wide">
+      Plataforma de Administración y Portafolio de Afiliados
+    </p>
+    
+    {{#unless isAuthenticated}}
+      <div class="pt-4">
+        <a href="/login" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 transition-all transform hover:-translate-y-0.5">
+          Ingresar al Portal
+        </a>
+      </div>
+    {{/unless}}
+  </div>
+</div>

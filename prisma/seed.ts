@@ -1,5 +1,5 @@
 
-import { prisma } from "../src/lib/prisma";
+import { prisma } from "../src/lib/prisma.js";
 
 async function main() {
   // Comprobamos si ya existen membresías para no duplicarlas si corres el seed dos veces

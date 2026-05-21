@@ -1,0 +1,71 @@
+<div class="space-y-6">
+  <!-- Encabezado del Panel -->
+  <div class="sm:flex sm:items-center sm:justify-between border-b border-gray-200 pb-5">
+    <div>
+      <h1 class="text-2xl font-bold leading-6 text-gray-900 sm:text-3xl tracking-tight">Mis Afiliados</h1>
+      <p class="mt-2 text-sm text-gray-600">Listado completo de tus registros comerciales y sus niveles de membresía.</p>
+    </div>
+    <div class="mt-4 sm:ml-4 sm:mt-0">
+      <a href="/affiliates/create" class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">
+        + Agregar Afiliado
+      </a>
+    </div>
+  </div>
+
+  <!-- Tabla de Datos -->
+  {{#if affiliates}}
+    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Nombre Completo</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Correo Electrónico</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Membresía</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Descuento</th>
+            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+              <span class="sr-only">Acciones</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          {{#each affiliates}}
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                {{this.firstName}} {{this.lastName}}
+              </td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-600">
+                {{this.email}}
+              </td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm">
+                <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                  {{this.membership.name}}
+                </span>
+              </td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 font-mono">
+                {{this.membership.discountPercentage}}%
+              </td>
+              <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-3">
+                <a href="/affiliates/{{this.id}}" class="text-indigo-600 hover:text-indigo-900">Calcular</a>
+                <a href="/affiliates/{{this.id}}/edit" class="text-gray-600 hover:text-gray-900">Editar</a>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <!-- Estado Vacío (No hay datos registrados aún) -->
+    <div class="text-center bg-white border border-dashed border-gray-300 rounded-lg p-12 shadow-sm">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      <h3 class="mt-2 text-sm font-semibold text-gray-900">No hay afiliados</h3>
+      <p class="mt-1 text-sm text-gray-500">Comienza agregando un afiliado a tu cuenta de administrador.</p>
+      <div class="mt-6">
+        <a href="/affiliates/create" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+          + Agregar Primer Afiliado
+        </a>
+      </div>
+    </div>
+  {{/if}}
+</div>
