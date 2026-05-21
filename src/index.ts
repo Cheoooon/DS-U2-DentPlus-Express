@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 app.engine('hbs', engine({
   extname: '.hbs',
   defaultLayout: 'main',
-  layoutsDir: path.join(process.cwd(), 'views/layouts'),
+  layoutsDir: path.join(process.cwd(), 'views/layouts'), 
   helpers: {
     // Aquí registras tu helper para mantener el selector
     eq: function (a: unknown, b: unknown) {
@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 
 // Rutas:
 app.use('/', authRoutes);
-app.use('/', authGuard, affiliateRoutes);
+app.use('/affiliates', authGuard, affiliateRoutes);
 
 app.get('/', (_req, res) => {
   res.render('home');

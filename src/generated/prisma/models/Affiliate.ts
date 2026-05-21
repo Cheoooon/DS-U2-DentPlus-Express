@@ -540,6 +540,7 @@ export type AffiliateCreateOrConnectWithoutUserInput = {
 
 export type AffiliateCreateManyUserInputEnvelope = {
   data: Prisma.AffiliateCreateManyUserInput | Prisma.AffiliateCreateManyUserInput[]
+  skipDuplicates?: boolean
 }
 
 export type AffiliateUpsertWithWhereUniqueWithoutUserInput = {
@@ -599,6 +600,7 @@ export type AffiliateCreateOrConnectWithoutMembershipInput = {
 
 export type AffiliateCreateManyMembershipInputEnvelope = {
   data: Prisma.AffiliateCreateManyMembershipInput | Prisma.AffiliateCreateManyMembershipInput[]
+  skipDuplicates?: boolean
 }
 
 export type AffiliateUpsertWithWhereUniqueWithoutMembershipInput = {
@@ -1445,6 +1447,7 @@ export type AffiliateCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * The data used to create many Affiliates.
    */
   data: Prisma.AffiliateCreateManyInput | Prisma.AffiliateCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1463,6 +1466,7 @@ export type AffiliateCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * The data used to create many Affiliates.
    */
   data: Prisma.AffiliateCreateManyInput | Prisma.AffiliateCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

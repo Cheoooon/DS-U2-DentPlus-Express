@@ -15,7 +15,9 @@
 
     /* Comprobación de Tipos (Type Checking) */
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["src/**/*"],
   "exclude": [

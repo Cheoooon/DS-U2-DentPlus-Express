@@ -53,12 +53,13 @@ export const AuthController = {
         return res.render('auth/register', { error: 'El correo ya está registrado', name, email });
       }
 
-      const passwordHash = await bcrypt.hash(password, process.env.BCRYPT_SALT_ROUNDS ?? 10);
+      const passwordHash = await bcrypt.hash(password, 10);
       await UserModel.create({ name, email, passwordHash });
 
       res.redirect('/login');
     } 
     catch (err) {
+        console.log('Error en registro:', err);
         if (err instanceof ZodError) {
             return res.render('auth/register', { 
                 error: err.issues[0].message,

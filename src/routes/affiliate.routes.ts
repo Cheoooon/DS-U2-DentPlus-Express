@@ -5,22 +5,22 @@ import { MembershipController } from "../controllers/membership.controller.js";
 const router = Router();
 
 // Listado de afiliados del usuario autenticado
-router.get('/affiliates', AffiliateController.getAll);
+router.get('', AffiliateController.getAll);
 
 // Crear Afiliado
-router.get('/affiliates/create', AffiliateController.getCreateForm);
-router.post('/affiliates/create', AffiliateController.create);
+router.get('/create', AffiliateController.getCreateForm);
+router.post('/create', AffiliateController.create);
 
 // Ver, Editar y Eliminar Afiliado
-router.get('/affiliates/:id', AffiliateController.getOne);
+router.get('/:id', AffiliateController.getOne);
 
-router.get('/affiliates/:id/edit', AffiliateController.getEditForm);
-router.post('/affiliates/:id/edit', AffiliateController.update);
+router.get('/:id/edit', AffiliateController.getEditForm);
+router.post('/:id/edit', AffiliateController.update);
 
-router.get('/affiliates/:id/delete', AffiliateController.getDeleteForm);
-router.post('/affiliates/:id/delete', AffiliateController.delete);
+router.get('/:id/delete', AffiliateController.getDeleteForm);
+router.post('/:id/delete', AffiliateController.delete);
 
 // Cálculo de beneficios de membresía
-router.post('/affiliates/:id/compute', MembershipController.calculateDiscount);
+router.post('/:id/compute', MembershipController.calculateDiscount);
 
 export default router;
