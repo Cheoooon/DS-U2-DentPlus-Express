@@ -1,43 +1,74 @@
-# DentPlus Express - Sistema de Membresías
+# 🦷 DentPlus Express
 
-Este proyecto es una aplicación Express con TypeScript, Prisma y HBS, diseñada para ejecutarse de forma sencilla y automatizada utilizando Docker.
+**Sistema de Gestión de Membresías** desarrollado con **Express**, **TypeScript**, **Prisma** y **Handlebars (HBS)**. Diseñado para una implementación rápida y eficiente mediante contenedores Docker.
 
-## 🚀 Inicio Rápido con Docker
+---
 
-La forma más fácil de levantar el proyecto es usando Docker Compose.
+## 🚀 Inicio Rápido
 
-1.  **Configurar variables de entorno**:
-    Copia el archivo de ejemplo y ajusta según necesites:
-    ```bash
+La manera más sencilla de ejecutar el proyecto es utilizando **Docker Compose**.
+
+### 1. Configuración inicial
+Copia el archivo de variables de entorno y ajusta los valores necesarios:
+
     cp .env.example .env
-    ```
 
-2.  **Levantar el proyecto**:
-    ```bash
+### 2. Ejecutar la aplicación
+Levanta el servicio completo con el siguiente comando:
+
     docker compose up --build
-    ```
 
-La aplicación estará disponible en `http://localhost:3000` (o el puerto que definas en el `.env`).
-
----
-
-## Desarrollo local (solo levantar postgresql)
-Solo levantar postgress y desarrollo local:
-
-Es necesario indicar el puerto en docker-compose.yml para exponer localmente postgresql:
-```
-    ports:
-      - "5432:5432"
-```
-
-Levantar postgresql:
-> docker compose up postgres-db (con -d para que se ejecute en segundo plano)
-
-Iniciar proyecto
-> pnpm run dev
+> 🌐 La aplicación estará disponible en `http://localhost:3000` (o el puerto definido en tu archivo `.env`).
 
 ---
 
-## ⚙️ Requisitos
-*   Docker y Docker Compose.
-*   Node.js 24+ (solo si deseas ejecutarlo localmente sin Docker).
+## 🛠 Desarrollo Local
+
+Si prefieres trabajar en entorno local (ejecutando Node.js directamente), sigue estos pasos:
+
+### Configuración de Base de Datos
+Asegúrate de exponer el puerto de PostgreSQL en tu `docker-compose.yml`:
+
+    services:
+      postgres-db:
+        ports:
+          - "5432:5432"
+
+Luego, inicia la base de datos en segundo plano:
+
+    docker compose up postgres-db 
+(con -d para que se ejecute en segundo plano)
+
+### Preparación del entorno
+Instala las dependencias y prepara el ORM:
+
+| Acción | Comando |
+| :--- | :--- |
+| **Instalar dependencias** | pnpm install |
+| **Generar cliente Prisma** | pnpm dlx prisma generate |
+| **Ejecutar migraciones** | pnpm dlx prisma migrate deploy |
+| **Ejecutar seeders** | pnpm dlx prisma db seed |
+
+### Iniciar el servidor
+
+    pnpm run dev
+
+---
+
+## 📋 Requisitos Previos
+
+Para ejecutar este proyecto, asegúrate de tener instalado:
+
+* **Docker** y **Docker Compose**
+* **Node.js v24+**
+* **pnpm**
+
+---
+
+## 🛠 Tecnologías Utilizadas
+
+* [Express.js](https://expressjs.com/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Prisma](https://www.prisma.io/)
+* [Handlebars](https://handlebarsjs.com/)
+* [PostgreSQL](https://www.postgresql.org/)
