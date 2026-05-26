@@ -36,6 +36,7 @@ RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 
 COPY --from=builder /app/dist ./dist
 COPY views ./views
+COPY public ./public
 
 EXPOSE ${PORT}
 
