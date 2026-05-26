@@ -15,6 +15,8 @@ COPY tsconfig.json prisma.config.ts ./
 COPY src ./src
 COPY prisma ./prisma 
 
+RUN pnpm dlx prisma generate
+
 RUN pnpm run build
 
 # ==========================================
