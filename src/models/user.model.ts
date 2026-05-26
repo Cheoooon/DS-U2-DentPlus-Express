@@ -12,7 +12,7 @@ export const UserModel = {
       data: {
         name: data.name,
         email: data.email,
-        password: data.passwordHash, // Guardamos la contraseña ya encriptada
+        password: data.passwordHash,
       },
     });
   },

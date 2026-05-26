@@ -11,6 +11,6 @@ export default defineConfig(
     },
   },
   {
-    ignores: ["dist/"]
+    ignores: ["dist/", 'data/', 'node_modules/'],
   }
 );
