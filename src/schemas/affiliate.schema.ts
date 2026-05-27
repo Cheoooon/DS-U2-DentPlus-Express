@@ -5,7 +5,7 @@ export const AffiliateSchema = (userId: number, affiliateId?: string) => {
   return z.object({
     firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').max(50),
     lastName: z.string().min(2, 'El apellido debe tener al menos 2 caracteres').max(50),
-    email: z.email('El formato del correo electrónico no es válido'),
+    email: z.email('El formato del correo electrónico no es válido').toLowerCase(),
     membershipId: z.uuid('Debes seleccionar una membresía válida'),
   })
   .superRefine(async (data, ctx) => {

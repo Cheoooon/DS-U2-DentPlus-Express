@@ -38,7 +38,7 @@ export const AffiliateModel = {
   getByEmail: async (email: string, userId: number) => {
     return await prisma.affiliate.findFirst({
       where: { 
-        email,
+        email: email.toLowerCase(),
         userId 
       },
       include: { membership: true },
@@ -51,23 +51,31 @@ export const AffiliateModel = {
     lastName: string; 
     email: string; 
     membershipId: string;
-    userId: number; // Forzado por la arquitectura relacional
+    userId: number;
   }) => {
-    return await prisma.affiliate.create({ data });
+    return await prisma.affiliate.create({
+       data: {
+        ...data,
+        email: data.email.toLowerCase(),
+       }
+    });
   },
 
   // Actualizar un afiliado controlando el alcance del usuario
   update: async (
     id: string, 
     userId: number,
-    data: { firstName?: string; lastName?: string; email?: string; membershipId?: string }
+    data: { firstName: string; lastName: string; email: string; membershipId: string }
   ) => {
     return await prisma.affiliate.updateMany({
       where: { 
         id,
         userId 
       },
-      data,
+      data: {
+        ...data,
+        email: data.email.toLowerCase(),
+      },
     });
   },
 

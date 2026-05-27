@@ -3,7 +3,7 @@ import { prisma } from "../lib/prisma.js";
 export const UserModel = {
   getByEmail: async (email: string) => {
     return await prisma.user.findUnique({
-      where: { email },
+      where: { email: email.toLowerCase() },
     });
   },
 
@@ -11,7 +11,7 @@ export const UserModel = {
     return await prisma.user.create({
       data: {
         name: data.name,
-        email: data.email,
+        email: data.email.toLowerCase(),
         password: data.passwordHash,
       },
     });
