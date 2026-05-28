@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import expressSession from 'express-session';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { engine } from 'express-handlebars'
@@ -8,6 +9,8 @@ import affiliateRoutes from './routes/affiliate.routes.js';
 import { prisma } from './lib/prisma.js';
 
 const app = express();
+
+app.use(helmet());
 
 // Views
 app.engine('hbs', engine({
@@ -35,6 +38,9 @@ app.use(
   expressSession({
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
     },
     secret: process.env.SESSION_SECRET || 'session_secret_default',
     resave: true,
