@@ -27,13 +27,14 @@ Levanta el servicio completo con el siguiente comando:
 Si prefieres trabajar en entorno local (ejecutando Node.js directamente), sigue estos pasos:
 
 ### Configuración de Base de Datos
-Asegúrate de exponer el puerto de PostgreSQL en tu `docker-compose.yml`:
+Asegúrate de exponer el puerto localmente de PostgreSQL en tu `docker-compose.yml`:
 
     services:
       postgres-db:
         ports:
           - "5432:5432"
 
+También de corregir en tu .env la variable de entorno correcta.
 Luego, inicia la base de datos en segundo plano:
 
     docker compose up postgres-db 
