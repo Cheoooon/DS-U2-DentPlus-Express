@@ -55,6 +55,18 @@
     <h3 class="text-md font-bold text-gray-900 mb-2">Simulador de Beneficios</h3>
     <p class="text-sm text-gray-500 mb-4">Calcula el descuento aplicable a este afiliado basado en su nivel de membresía actual ({{affiliate.membership.discountPercentage}}% de descuento).</p>
     
+    {{#if error}}
+    <div class="mb-4 bg-red-50 border-l-4 border-red-400 p-4">
+      <div class="flex">
+        <div class="ml-3">
+          <p class="text-sm text-red-700">
+            {{error}}
+          </p>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+
     <form action="/affiliates/{{affiliate.id}}/compute" method="POST" class="sm:flex sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
       <div class="w-full sm:max-w-xs">
         <label for="amount" class="sr-only">Monto Base</label>
