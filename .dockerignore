@@ -1,0 +1,14 @@
+# Ignorar carpetas de control de versiones
+.git
+.gitignore
+
+# Ignorar dependencias locales (se deben instalar dentro del Dockerfile)
+node_modules/
+dist/
+
+# Ignorar carpeta data (volumenes de servicios)
+data/
+
+# Ignorar archivos de entorno con datos sensibles
+.env
+.env.example

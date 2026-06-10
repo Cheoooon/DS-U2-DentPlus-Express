@@ -46,9 +46,9 @@ Instala las dependencias y prepara el ORM:
 | Acción | Comando |
 | :--- | :--- |
 | **Instalar dependencias** | pnpm install |
-| **Generar cliente Prisma** | pnpm dlx prisma generate |
-| **Ejecutar migraciones** | pnpm dlx prisma migrate deploy |
-| **Ejecutar seeders** | pnpm dlx prisma db seed |
+| **Generar cliente Prisma** | pnpm prisma generate |
+| **Ejecutar migraciones** | pnpm prisma migrate deploy |
+| **Ejecutar seeders** | pnpm prisma db seed |
 
 ### Iniciar el servidor
 
